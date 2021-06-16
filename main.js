@@ -1,17 +1,23 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow} = require('electron');
+const { dirname } = require('path');
 const path = require('path')
 
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 300,
+    height: 335,
+    icon: __dirname + '/assets/anti-mcreator-512x512.png',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
   })
 
+  mainWindow.removeMenu();
+  mainWindow.setResizable(false);
+  mainWindow.setMovable(false);
+  
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
